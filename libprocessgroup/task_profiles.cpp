@@ -206,7 +206,7 @@ bool SetAttributeAction::ExecuteForTask(int tid) const {
     }
 
     if (!WriteStringToFile(value_, path)) {
-        if (errno == ENOENT) {
+        if (access(path.c_str(), F_OK) < 0) {
             if (optional_) {
                 return true;
             } else {
