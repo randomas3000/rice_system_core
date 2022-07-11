@@ -364,6 +364,9 @@ bool SubcontextChildReap(pid_t pid) {
 }
 
 void SubcontextTerminate() {
+    if (!subcontext) {
+        return;
+    }
     subcontext_terminated_by_shutdown = true;
     kill(subcontext->pid(), SIGTERM);
 }
